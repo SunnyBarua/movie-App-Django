@@ -1,0 +1,22 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie App</title>
+</head>
+<body>
+    <form action="" name="search">
+        <input type="text" name="query"/>
+        <input type="submit" value="Search"/>
+    </form>
+    
+    {% for movie in search_result %}
+    <p>{{ movie.fields.Name}}</p>
+    <img src="{{ movie.fields.Pictures.0.url }}"  alt="" width="450" height="450"/>
+     {% endfor %}
+    
+</body>
+</html>
