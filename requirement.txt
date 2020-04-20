@@ -1,0 +1,9 @@
+airtable-python-wrapper
+certifi
+chardet
+Django
+idna
+pythz
+requests
+six
+urllib3
