@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <div class="movies__item full-width">
-                    <i class="movies__item-star fa fa-start hide"></i>
+                    <i class="movies__item-star fa fa-star hide"></i>
                     <p class="movies__item-rating hide">{{movie.fields.Rating}}/10</p>
                     <img class="movies__item-image" src="{{ movie.fields.Pictures.0.url }}" alt=""/>
                     <div class="movies__item-title">
@@ -16,7 +16,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-modal-{{movie.id}}">Edit</button>
+                <a href="{% url 'delete' movie_id=movie.id %}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>

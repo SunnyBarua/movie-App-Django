@@ -22,9 +22,42 @@ def create(request):
     if request.method =='POST':
         data={
             'Name':request.POST.get('name'),
-            'Pictures':[{'url':request.POST.get('url')}],
+            'Pictures':[{'url':request.POST.get('url') or 'https://adamsbooks.co.za/wp-content/uploads/2018/05/Sorry-Image-Not-Available-257-58.png'}],
             'Rating':int(request.POST.get('rating')),
             'Notes':request.POST.get('notes')
         }
-        AT.insert(data)
+        try:
+            response=AT.insert(data)
+            #notify on create
+            messages.success(request,'New Movie Added: {}'.format(response['fields'].get('Name')))
+        except Exception as e:
+            messages.warning(request,'Got an error when trying to create a new movie : {}'.format(e))
+    return redirect('/')
+
+def edit(request,movie_id):
+    if request.method == 'POST':
+        data={
+            'Name':request.POST.get('name'),
+            'Pictures':[{'url':request.POST.get('url') or 'https://adamsbooks.co.za/wp-content/uploads/2018/05/Sorry-Image-Not-Available-257-58.png'}],
+            'Rating':int(request.POST.get('rating')),
+            'Notes':request.POST.get('notes')
+        }
+        try:
+            response=AT.update(movie_id,data)
+            #notify on update
+            messages.success(request,'Updated Movie: {}'.format(response['fields'].get('Name')))
+        except Exception as e:
+            messages.warning(request,'Got an error when trying to update a movie: {}'.format(e))
+
+       
+    return redirect('/')
+
+def delete(request,movie_id):  
+    try:
+        movie_name=AT.get(movie_id)['fields'].get('Name')
+        response=AT.delete(movie_id)
+        messages.warning(request,'Deleted Movie: {}'.format(movie_name))
+    except Exception as e:
+        messages.warning(request,'Got an error when trying to delete a movie :{}'.format(e))
+    #notify on delete
     return redirect('/')

@@ -41,7 +41,7 @@ body::before {
 }
 
 .nav {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     background: #202020;
     height: 4.375rem;
     display: flex;
@@ -139,7 +139,7 @@ body::before {
 .movies__item-image {
     transition: all 0.2s ease;
 	width: 100%;
-    height: 480px;
+    height: 45vw;
     max-height: 35.626rem;
     box-shadow: 0 0 5px 2px rgba(0,0,0,0.1);
 }
@@ -260,6 +260,6 @@ body::before {
     }
 }
 
-.movies__item .full-width{
+.movies__item.full-width {
     width: 100%;
 }
